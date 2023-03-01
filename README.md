@@ -79,11 +79,11 @@ rs2036914	4	187192481	CT
 rs1799963	11	46761055	GG
 ```
 Исходя из статьи [Multiple SNP testing improves risk prediction of first venous thrombosis](https://ashpublications.org/blood/article/120/3/656/30474/Multiple-SNP-testing-improves-risk-prediction-of) и из [SNPedia}(https://www.snpedia.com/) узнаём какой аллель повышают риск тромбоза:
-rs6025 - AA
-rs1799963 - AA
-rs8176719 - GG
-rs2066865 - TT
-rs2036914 - СC
+1) rs6025 - AA
+2) rs1799963 - AA
+3) rs8176719 - GG
+4) rs2066865 - TT
+5) rs2036914 - СC
 
 Смотрим на нашего клиента и складываем результаты - получилось **1**, повысил риск генотип rs2036914, так как гомозиготный
 Если посмотреть в статье [Multiple SNP testing improves risk prediction of first venous thrombosis](https://ashpublications.org/blood/article/120/3/656/30474/Multiple-SNP-testing-improves-risk-prediction-of) на 3 график,
@@ -96,13 +96,32 @@ rs2036914 - СC
 
 ##### №3
 Рассмотрим 3 мутации:
-1) rs1333049 - связан с риском ишемической болезни сердца
-2) rs1805007 - связанных с рыжим цветом волос
-3) rs6152 - связан с облысенением
-В норме это: rs1333049 - GG, rs1805007 - СС, rs6152 - AA
+1) rs1333049 - связан с риском ишемической болезни сердца CG
+2) rs4988235 - связан с переносимостью лактозы AA
+3) rs7903146 - связан с риском развития диабета 2ого типа СT
+
 
 Рассмотрим, что у нашего клиента
 ```r
 dplyr::filter(genome_raw, grepl('\\brs1333049\\b|\\brs1805007\\b|\\brs6152\\b', RSID))
 ```
+```
+A data.frame: 3 × 4
+RSID	CHROMOSOME	POSITION	RESULT
+<chr>	<chr>	<int>	<chr>
+rs1333049	9	22125503	CG
+rs4988235	2	136608646	AA
+rs7903146	10	89011046	CT
 
+```
+**У клиента:**
+1) 1.5x риск развития ишемической болезни сердца по данным [сайта](https://www.snpedia.com/index.php/Rs1333049)
+2) перевариает молоко по данным [сайта](https://www.snpedia.com/index.php/Rs4988235), у нас AA, ориентация минус 
+3) 1,4-кратный повышенный риск диабета (и, возможно, рака толстой кишки) по данным [сайта](https://www.snpedia.com/index.php/Rs7903146)
+  
+  
+  
+  
+  
+  
+  
